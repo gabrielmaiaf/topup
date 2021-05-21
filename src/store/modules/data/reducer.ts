@@ -1,26 +1,9 @@
 import produce from 'immer';
 import { AnyAction, Reducer } from 'redux';
 
-import { DataActionTypes, IDataState } from './types';
+import { DataActionTypes, DataState } from './types';
 
-export interface ICountry {
-  iso: string;
-  name: string;
-  prefix: string;
-}
-
-export interface IOperator {
-  id: string;
-  iso: string;
-  name: string;
-}
-
-export interface IProduct {
-  id: string;
-  products: string[];
-}
-
-const INITIAL_STATE: IDataState = {
+const INITIAL_STATE: DataState = {
   operators: [],
   countries: [],
   products: [],
@@ -28,7 +11,7 @@ const INITIAL_STATE: IDataState = {
   isRequesting: false,
 };
 
-const data: Reducer<IDataState> = (state = INITIAL_STATE, action: AnyAction) => {
+const data: Reducer<DataState> = (state = INITIAL_STATE, action: AnyAction) => {
   return produce(state, (draft) => {
     switch (action.type) {
       case DataActionTypes.getDataFromApiRequest:
